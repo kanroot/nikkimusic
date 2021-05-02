@@ -10,16 +10,19 @@ config_version=4
 
 _global_script_classes=[  ]
 _global_script_class_icons={
-
 }
 
 [application]
 
 config/name="NikkiMusic"
+run/main_scene="res://Src/Scenes/Main.tscn"
 config/icon="res://icon.png"
+
+[display]
+
+window/size/width=2040
+window/size/height=1080
 
 [rendering]
 
-
 environment/default_environment="res://default_env.tres"
-

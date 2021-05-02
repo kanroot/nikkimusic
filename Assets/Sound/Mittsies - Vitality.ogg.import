@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Mittsies - Vitality.ogg-5f84e695b246be0bf40b14b01c4d102d.oggstr"
+
+[deps]
+
+source_file="res://Assets/Sound/Mittsies - Vitality.ogg"
+dest_files=[ "res://.import/Mittsies - Vitality.ogg-5f84e695b246be0bf40b14b01c4d102d.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
