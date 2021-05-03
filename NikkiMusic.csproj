@@ -5,4 +5,7 @@
   <ItemGroup>
     <PackageReference Include="GDMechanic" Version="1.0.0-alpha4" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Src\Prefabs" />
+  </ItemGroup>
 </Project>
