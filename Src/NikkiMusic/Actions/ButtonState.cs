@@ -1,4 +1,4 @@
-namespace NikkiMusic
+namespace NikkiMusic.Actions
 {
 	public enum ButtonState
 	{

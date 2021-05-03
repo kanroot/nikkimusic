@@ -1,13 +1,16 @@
 using System;
 using GDMechanic.Wiring;
 using GDMechanic.Wiring.Attributes;
+using GDMechanic.Extensions;
 using Godot;
+using NikkiMusic.Actions;
+using NikkiMusic.Systems;
 
 namespace NikkiMusic
 {
-	public class Main : Node2D
+	public class Main : Control
 	{
-		[Child] private Label scoreLabel;
+		[Node("Margin/ScoreLabel")] private Label scoreLabel;
 		[Child] private Conductor conductor;
 		[Child] private WallpaperGradient wallpaperGradient;
 		[Export] private PackedScene buttonTouch;
@@ -23,7 +26,7 @@ namespace NikkiMusic
 		public override void _Ready()
 		{
 			this.Wire();
-			conductor.pulse += OnPulse;
+			conductor.Connect("PulsedWholeBeat", this, nameof(OnPulse));
 		}
 
 		//corre por cada frame de simulacion
@@ -42,10 +45,9 @@ namespace NikkiMusic
 
 		private void OnPulse(int pulse)
 		{
-			var j = buttonTouch.Instance() as ButtonTouch;
-			AddChild(j);
-			j?.Init(XyZ());
-			if (j != null) j.OnDestroyed += OnDestroyed;
+			var button = buttonTouch.InstanceToParent<ButtonTouch>(this);
+			button.Init(XyZ(), 150 * 60);
+			button.Connect("Destroyed", this, nameof(OnDestroyed));
 		}
 
 		private void ChangeBackGround()
@@ -53,12 +55,11 @@ namespace NikkiMusic
 			var color =  new Color[] {Colors.Aqua,Colors.Beige};
 			wallpaperGradient.SetGradient(color);
 		}
-		private void OnDestroyed(int Score)
+		
+		private void OnDestroyed(int score)
 		{
-			scoreTotal += Score;
+			scoreTotal += score;
 			ChangeBackGround();
 		}
-		//desarollar label, hud puntaje total, crear nodes del hud y crear una escena aparte o viceversa.
-		//lograr sincronizar bpm con la reproducción real de godot.
 	}
 }
