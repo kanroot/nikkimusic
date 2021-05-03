@@ -9,7 +9,8 @@ namespace NikkiMusic
 	{
 		[Child] private Label scoreLabel;
 		[Child] private Conductor conductor;
-		[Export] private PackedScene buttonScene;
+		[Child] private WallpaperGradient wallpaperGradient;
+		[Export] private PackedScene buttonTouch;
 		private Random random = new Random();
 
 		private int scoreTotal = 0;
@@ -41,16 +42,21 @@ namespace NikkiMusic
 
 		private void OnPulse(int pulse)
 		{
-			var j = buttonScene.Instance() as ButtonTouch;
+			var j = buttonTouch.Instance() as ButtonTouch;
 			AddChild(j);
 			j?.Init(XyZ());
 			if (j != null) j.OnDestroyed += OnDestroyed;
 		}
 
-		//crear un metodo que detecte cuando se crea y se destruye el boton.
+		private void ChangeBackGround()
+		{
+			var color =  new Color[] {Colors.Aqua,Colors.Beige};
+			wallpaperGradient.SetGradient(color);
+		}
 		private void OnDestroyed(int Score)
 		{
 			scoreTotal += Score;
+			ChangeBackGround();
 		}
 		//desarollar label, hud puntaje total, crear nodes del hud y crear una escena aparte o viceversa.
 		//lograr sincronizar bpm con la reproducción real de godot.

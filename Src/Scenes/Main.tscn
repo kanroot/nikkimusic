@@ -1,17 +1,23 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Assets/font/Xolonium-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Src/Scenes/Conductor.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Src/NikkiMusic/Main.cs" type="Script" id=3]
 [ext_resource path="res://Src/Prefabs/ButtonTouch.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Src/Scenes/WallpaperGradient.tscn" type="PackedScene" id=5]
 
 [sub_resource type="DynamicFont" id=1]
 size = 60
 font_data = ExtResource( 1 )
 
 [node name="Main" type="Node2D"]
+position = Vector2( 0, -1 )
 script = ExtResource( 3 )
-buttonScene = ExtResource( 4 )
+buttonTouch = ExtResource( 4 )
+
+[node name="WallpaperGradient" parent="." instance=ExtResource( 5 )]
+margin_right = 2040.0
+margin_bottom = 1080.0
 
 [node name="Conductor" parent="." instance=ExtResource( 2 )]
 
