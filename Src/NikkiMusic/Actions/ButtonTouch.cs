@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using GDMechanic.Wiring;
 using GDMechanic.Wiring.Attributes;
 using Godot;
@@ -21,7 +22,7 @@ namespace NikkiMusic.Actions
         {
             base.Init(position, bps);
             UpdateState(ButtonState.Horrible);
-            LifeCycle();
+            _ = LifeCycle();
         }
         
         private void UpdateState(ButtonState state)
@@ -31,7 +32,7 @@ namespace NikkiMusic.Actions
             Score = GetCurrentScore();
         }
 
-        private async void LifeCycle()
+        private async Task LifeCycle()
         {
             while (currentState != ButtonState.Miss)
             {
@@ -91,7 +92,10 @@ namespace NikkiMusic.Actions
             QueueFree();
         }
 
-        protected override void OnRelease() {}
+        protected override void OnRelease()
+        {
+            //No se usa para este tipo de botones
+        }
 
         
         public override void _Ready()
