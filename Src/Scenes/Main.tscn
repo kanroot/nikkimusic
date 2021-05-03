@@ -22,10 +22,6 @@ buttonTouch = ExtResource( 4 )
 [node name="Conductor" parent="." instance=ExtResource( 2 )]
 
 [node name="WallpaperGradient" parent="." instance=ExtResource( 5 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 2040.0
-margin_bottom = 1080.0
 
 [node name="Margin" type="MarginContainer" parent="."]
 anchor_right = 1.0
