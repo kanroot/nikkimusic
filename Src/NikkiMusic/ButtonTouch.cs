@@ -14,7 +14,7 @@ namespace NikkiMusic
         [Export] private Texture perfect;
         [Export] private Texture slow;
         
-        [Child] private TextureButton actionButton;
+        [Child] private TouchScreenButton actionButton;
     
         [Export] private int scoreHorrible = 100;
         [Export] private int scoreBad = 200;
@@ -129,7 +129,7 @@ namespace NikkiMusic
             private set
             {
                 currentState = value;
-                actionButton.TextureNormal = ButtonFrame();
+                actionButton.Normal = ButtonFrame();
                 SetScore();
             }
         }
