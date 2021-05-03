@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://Src/NikkiMusic/ButtonTouch.cs" type="Script" id=1]
+[ext_resource path="res://Src/NikkiMusic/Actions/ButtonTouch.cs" type="Script" id=1]
 [ext_resource path="res://Assets/Img/button_1_1.png" type="Texture" id=2]
 [ext_resource path="res://Assets/Img/button_1_2.png" type="Texture" id=3]
 [ext_resource path="res://Assets/Img/button_1_3.png" type="Texture" id=4]
@@ -9,13 +9,14 @@
 
 [node name="ButtonTouch" type="Node2D"]
 script = ExtResource( 1 )
-horrible = ExtResource( 2 )
-bad = ExtResource( 3 )
-good = ExtResource( 4 )
-perfect = ExtResource( 5 )
-slow = ExtResource( 6 )
+textureHorrible = ExtResource( 2 )
+textureBad = ExtResource( 3 )
+textureGood = ExtResource( 4 )
+texturePerfect = ExtResource( 5 )
+textureSlow = ExtResource( 6 )
 
 [node name="ActionButton" type="TouchScreenButton" parent="."]
 position = Vector2( -83.6115, -83.402 )
 scale = Vector2( 0.1, 0.1 )
-normal = ExtResource( 2 )
+normal = ExtResource( 5 )
+pressed = ExtResource( 6 )
