@@ -20,7 +20,8 @@ data_*/
 # IDEs
 .idea/
 .vscode/
-*.sln.DotSettings*
+*.sln.DotSettings
+*.sln.DotSettings.user
 *.log
 
 # Mono
