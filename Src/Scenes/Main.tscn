@@ -20,6 +20,8 @@ __meta__ = {
 buttonTouch = ExtResource( 4 )
 
 [node name="Conductor" parent="." instance=ExtResource( 2 )]
+debug = false
+bpm = 150
 
 [node name="WallpaperGradient" parent="." instance=ExtResource( 5 )]
 

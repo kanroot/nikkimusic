@@ -14,6 +14,13 @@ namespace NikkiMusic
 		[Child] private Conductor conductor;
 		[Child] private WallpaperGradient wallpaperGradient;
 		[Export] private PackedScene buttonTouch;
+
+		//Colores por defecto de la gradiente
+		[Export] private Color finalColor = Color.Color8(32, 1, 34);
+
+		[Export] private Color initColor = Color.Color8(111, 0, 0);
+		//clase manejadora del cambio de color
+
 		private Random random = new Random();
 
 		private int scoreTotal = 0;
@@ -27,6 +34,7 @@ namespace NikkiMusic
 		{
 			this.Wire();
 			conductor.Connect("PulsedWholeBeat", this, nameof(OnPulse));
+			ChangeBackGround(initColor);
 		}
 
 		//corre por cada frame de simulacion
@@ -50,16 +58,18 @@ namespace NikkiMusic
 			button.Connect("Destroyed", this, nameof(OnDestroyed));
 		}
 
-		private void ChangeBackGround()
-		{
-			var color =  new Color[] {Colors.Aqua,Colors.Beige};
-			wallpaperGradient.SetGradient(color);
-		}
-		
+
 		private void OnDestroyed(int score)
 		{
 			scoreTotal += score;
-			ChangeBackGround();
+			initColor = ColorUtil.ChangeRgb(initColor, finalColor);
+			ChangeBackGround(initColor);
+		}
+
+		private void ChangeBackGround(Color init)
+		{
+			var color = new[] {init, finalColor};
+			wallpaperGradient.SetGradient(color);
 		}
 	}
 }
