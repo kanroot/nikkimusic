@@ -68,7 +68,7 @@ namespace NikkiMusic
 
 		private void ChangeBackGround(Color init)
 		{
-			var color = new Color[] {init, finalColor};
+			var color = new[] {init, finalColor};
 			wallpaperGradient.SetGradient(color);
 		}
 	}
