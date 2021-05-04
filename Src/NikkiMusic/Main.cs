@@ -63,6 +63,7 @@ namespace NikkiMusic
 		{
 			scoreTotal += score;
 			initColor = ColorUtil.ChangeRgb(initColor, finalColor);
+			GD.Print(initColor.r8);
 			ChangeBackGround(initColor);
 		}
 
