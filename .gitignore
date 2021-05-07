@@ -22,6 +22,7 @@ data_*/
 .vscode/
 *.sln.DotSettings
 *.sln.DotSettings.user
+/NikkiMusic.csproj.DotSettings
 *.log
 
 # Mono
