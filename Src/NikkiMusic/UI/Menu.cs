@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Godot;
 using GDMechanic.Wiring;
 using GDMechanic.Wiring.Attributes;
@@ -8,38 +9,71 @@ namespace NikkiMusic.UI
 {
     public class Menu : Control
     {
+        
         [Child] private TextureRect background;
         [Child] private Control controls;
-        [Node("Interface/PlayButton")] private TextureButton playButton;
-        [Node("Interface/GradeTexture")] private TextureRect gradeTexture;
-        [Node("Interface/TimeTexture")] private TextureRect timeTexture;
-        [Node("Interface/ScoreTexture")] private TextureRect scoreTexture;
-        [Node("Interface/GradeLabel")] private Label gradeLabel;
-        [Node("Interface/ScoreLabel")] private Label scoreLabel;
-        [Node("Interface/TimeLabel")] private Label timeLabel;
-
-        //solo de get
+        [Node("Controls/PlayButton")] private TextureButton playButton;
+        [Node("Controls/GradeTexture")] private TextureRect gradeTexture;
+        [Node("Controls/DifficultTexture")] private TextureRect difficultTexture;
+        [Node("Controls/ScoreTexture")] private TextureRect scoreTexture;
+        [Node("Controls/GradeLabel")] private Label gradeLabel;
+        [Node("Controls/ScoreLabel")] private Label scoreLabel;
+        [Node("Controls/DifficultyLabel")] private Label difficultyLabel;
+        [Node("SongList/VBoxContainer")] private VBoxContainer songsContainer;
+        [Export] private Texture texture;
+        [Export] private PackedScene songScene;
+        private object selectedSong;
+        private List<object> songs;
+        
         public TextureButton PlayButton => playButton;
 
-        
         public override void _Ready()
         {
-        
+            this.Wire();
         }
-        
-        public void SetTime(string time)
+        public void SetDifficulty(string difficulty)
         {
-            timeLabel.Text = time;
+            difficultyLabel.Text = difficulty;
         }
 
-        public void SetGrade(string grade)
+        public Menu Init( List<object> songs)
+        {
+            this.songs = songs;
+            AddSongs();
+            ChangeCurrentSong(new object());
+            return this;
+        }
+        
+        private void AddSongs()
+        {
+            foreach (var s in songs)
+            {
+                var songEntry = songScene.Instance<Song>();
+                songsContainer.AddChild(songEntry);
+                songEntry.Init("FORCES");
+            }
+        }
+
+        public void ChangeCurrentSong(object song)
+        {
+            SetGrade("A");
+            SetDifficulty("EASY");
+            SetScore("000000");
+            SetBackground(texture);
+        }
+        private void SetGrade(string grade)
         {
             gradeLabel.Text = grade;
         }
 
-        public void SetScore(string score)
+        private void SetScore(string score)
         {
             scoreLabel.Text = score;
+        }
+
+        public void SetBackground(Texture texture)
+        {
+            background.Texture = texture;
         }
     }
 }
