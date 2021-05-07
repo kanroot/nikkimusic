@@ -7,7 +7,7 @@ namespace NikkiMusic.UI
     public class Song : TextureButton
     {   
         
-        [Child()] private Label songName;
+        [Child] private Label songName;
         
         public override void _Ready()
         {
