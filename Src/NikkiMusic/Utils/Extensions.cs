@@ -23,5 +23,10 @@ namespace NikkiMusic.Utils
 			result = fileHandler.Open(path, flags);
 			return result == Error.Ok;
 		}
+
+		public static string GetContextName(this object obj)
+		{
+			return obj is Node node ? $"NODE: {node.Name}" : $"OBJECT: {obj}";
+		}
 	}
 }
