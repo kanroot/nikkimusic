@@ -18,6 +18,10 @@ ScriptsFolder="res://Src/NikkiMusic"
 config/name="NikkiMusic"
 run/main_scene="res://Src/Scenes/Main.tscn"
 
+[autoload]
+
+UnhandledExceptionHandler="*res://addons/SimpleLogger/UnhandledExceptionHandler.cs"
+
 [display]
 
 window/size/width=2040
