@@ -55,7 +55,6 @@ namespace SimpleLogger
 			var content = fileHandler.GetAsText();
 			fileHandler.Close();
 			CurrentLogLevel = (LogLevel)int.Parse(content);
-
 		}
 
 		private void SetLogLevel(LogLevel level)
@@ -66,7 +65,7 @@ namespace SimpleLogger
 
 		private void WriteLogLevelPref()
 		{ 
-			if (fileHandler.TryOpenFile(out var error, USER_PREF_FILE, File.ModeFlags.Write))
+			if (fileHandler.TryOpenFile(out var _, USER_PREF_FILE, File.ModeFlags.Write))
 			{
 				var serialized = JsonConvert.SerializeObject(CurrentLogLevel);
 				GD.Print(serialized);
@@ -83,7 +82,7 @@ namespace SimpleLogger
 			sb.Append(string.Format(DELIMITER, level.ToString().ToUpper()));
 			if (context != null)
 			{
-				sb.Append(string.Format(DELIMITER, nameof(context)));
+				sb.Append(string.Format(DELIMITER, context.GetContextName()));
 			}
 
 			sb.Append($" {message.ToString()}");
@@ -92,7 +91,7 @@ namespace SimpleLogger
 
 		private static void Log(LogLevel level, object message, object context = null)
 		{
-			if (instance.logLevel > level)
+			if (Instance.logLevel > level)
 			{
 				return;
 			}
