@@ -1,4 +1,5 @@
 ﻿using System;
+using Godot;
 
 namespace NikkiMusic.Utils
 {
@@ -15,6 +16,12 @@ namespace NikkiMusic.Utils
 			var array = (T[]) Enum.GetValues(src.GetType());
 			int index = Array.IndexOf<T>(array, src) + 1;
 			return array.Length == index ? array[0] : array[index];
+		}
+
+		public static bool TryOpenFile(this File fileHandler, out Error result, string path, File.ModeFlags flags)
+		{
+			result = fileHandler.Open(path, flags);
+			return result == Error.Ok;
 		}
 	}
 }
