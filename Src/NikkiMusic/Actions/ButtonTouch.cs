@@ -3,6 +3,7 @@ using GDMechanic.Wiring;
 using GDMechanic.Wiring.Attributes;
 using Godot;
 using NikkiMusic.Utils;
+using SimpleLogger;
 
 namespace NikkiMusic.Actions
 {
@@ -60,7 +61,8 @@ namespace NikkiMusic.Actions
                 case ButtonState.Miss:
                     return scoreMiss;
                 default:
-                    GD.PrintErr($"Botón alcanzó estado no soportado para reportar puntaje: {currentState}");
+                    Logger.LogError($"Botón alcanzó estado no soportado para reportar puntaje: {currentState}",
+                        this);
                     return scoreHorrible;
             }
         }
@@ -82,7 +84,8 @@ namespace NikkiMusic.Actions
                 case ButtonState.Miss:
                     return new ImageTexture();
                 default:
-                    GD.PrintErr($"Botón alcanzó estado no soportado para cambio de textura: {currentState}");
+                    Logger.LogError($"Botón alcanzó estado no soportado para cambio de textura: {currentState}",
+                        this);
                     return new ImageTexture();
             }
         }
